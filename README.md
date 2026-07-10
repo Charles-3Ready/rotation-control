@@ -1,103 +1,82 @@
 # Rotation Control
 
-### Your tablet. Your rules. Landscape when you want it, Auto when you don’t.
+Per-app screen orientation for Android.
+
+Set a game to landscape, a reader to portrait, or leave a video app on Auto so it follows the device tilt. When you leave that app, the system orientation is restored — so landscape does not stick on the home screen.
+
+No root required.
 
 <p align="center">
-  <img src="docs/storefront.png" alt="Rotation Control storefront renders" width="900" />
+  <img src="docs/storefront.png" alt="Rotation Control UI overview" width="900" />
 </p>
 
-**Force any app into portrait, landscape, or sensor-driven Auto** — without root, without yelling at Android’s rotation lock.
+## Features
 
-Built for tablets (hello iPlay) that love portrait mode *exactly* when you’re mid-raid or mid-movie.
-
----
-
-## Why does this exist?
-
-Because:
-
-- Games that *should* be landscape… aren’t  
-- Video apps that *could* rotate… refuse  
-- Auto-rotate is either always-on chaos or always-off brick  
-
-**Rotation Control** watches which app is open and applies *your* orientation rule. Leave the app → your tablet goes back to normal. No stuck landscape home screen. No root. No drama.
-
----
+| | |
+|--|--|
+| **Per-app rules** | System default, Portrait, Landscape, Reverse portrait/landscape, Auto (sensor) |
+| **Auto** | Follows tilt using the same force-lock path as fixed Landscape (works on devices that ignore free sensor mode) |
+| **Lock control** | While Auto is active, a temporary lock icon freezes the current angle, then hides |
+| **Onboarding** | Grant Accessibility and Modify system settings during setup |
+| **Restore on exit** | Leaving a ruled app restores the previous system rotation |
 
 ## Screenshots
 
-| Main rules | Onboarding setup |
-|------------|------------------|
-| <img src="docs/storefront.png" width="420" alt="App UI" /> | <img src="docs/onboarding-mock.png" width="420" alt="Onboarding" /> |
+| Main screen | Onboarding |
+|-------------|------------|
+| <img src="docs/storefront.png" width="400" alt="Main app UI" /> | <img src="docs/onboarding-mock.png" width="400" alt="Onboarding flow" /> |
 
----
+## Install
 
-## Features that slap
+Download the latest release APK from [Releases](https://github.com/Charles-3Ready/rotation-control/releases).
 
-| Feature | What it does |
-|---------|----------------|
-| **Per-app rules** | Landscape / Portrait / Reverse / Auto / System default |
-| **Auto (sensor)** | Follows tilt with the same force-lock that actually works on stubborn OEMs |
-| **Lock bubble** | Floating lock icon freezes the current angle, then **disappears** so it stays out of your face |
-| **Onboarding** | Grant Accessibility + Modify system settings *in the tutorial* |
-| **No root** | Accessibility overlay + system settings only |
-
----
-
-## Install (sideload)
-
-1. Download **`RotationControl-0.2.0-release.apk`** from [Releases](../../releases)  
-2. Install on your Android device (Unknown sources / “Install unknown apps”)  
-3. Open the app → finish onboarding permissions  
-4. Set a game to **Landscape**, a video app to **Auto**, go live  
-
-Or with ADB:
+Prefer **`RotationControl-*-release.apk`**.
 
 ```bash
 adb install -r RotationControl-0.2.0-release.apk
 ```
 
----
+1. Install the APK (allow installs from unknown sources if needed).
+2. Open Rotation Control and complete onboarding.
+3. Enable **Accessibility** for Rotation Control.
+4. Allow **Modify system settings**.
+5. Pick an app and set an orientation rule.
 
 ## Permissions
 
-1. **Accessibility** *(required)* — sees the foreground app package only (not keystrokes, not screen content)  
-2. **Modify system settings** *(recommended)* — applies force orientation locks  
+| Permission | Why |
+|------------|-----|
+| **Accessibility** (required) | Detects the foreground app package only. Does not read passwords or full screen content. |
+| **Modify system settings** (recommended) | Applies orientation locks via system settings. |
 
-Privacy one-liner: we only care which **app** is open, so we can rotate the glass.
+## How it works
 
----
+1. An accessibility service sees which package is in the foreground.
+2. A local rules store maps package → orientation mode.
+3. An accessibility overlay requests the chosen orientation (and Auto follows the accelerometer).
+4. Leaving the app clears the override and restores the previous system state.
 
-## How Auto works (the spicy part)
-
-Many tablets ignore “sensor free rotate” overlays. So Auto **listens to the accelerometer** and applies the same fixed force-lock as Landscape — just following your tilt. Tap the vanishing lock icon to freeze mid-watch.
-
----
-
-## Build from source
+## Build
 
 ```powershell
 cd rotation-control
 .\gradlew.bat assembleRelease
-# APK: app\build\outputs\apk\release\app-release.apk
 ```
 
-Requires Android SDK 35 / JDK 17.
+APK: `app\build\outputs\apk\release\app-release.apk`
 
----
+Requires JDK 17 and Android SDK 35.
 
-## Limits (honest)
+## Limitations
 
-- Some apps hard-fight orientation; Landscape usually wins, Auto almost always does  
-- OEM battery savers can delay Accessibility — whitelist the app if it feels sleepy  
-- Not a Play Store listing (yet) — GitHub Releases only  
-
----
+- Some apps hard-code their own orientation; fixed Landscape/Portrait usually still works.
+- Aggressive OEM battery savers can delay the accessibility service — whitelist the app if rules feel slow.
+- Not published on the Play Store yet; distribute via GitHub Releases.
 
 ## License
 
-Personal / open use. Don’t sell it as your own product. Do enjoy horizontal Hearthstone.
+Free for personal use. Do not resell as a closed product under another name.
 
 ---
 
-<p align="center"><b>Stop fighting your tablet. Start fighting the boss.</b><br/>Rotation Control · v0.2.0</p>
+**Charles-3Ready** · [Releases](https://github.com/Charles-3Ready/rotation-control/releases)
