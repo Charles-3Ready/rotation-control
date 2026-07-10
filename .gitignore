@@ -1,0 +1,11 @@
+# Built artifacts
+.gradle/
+build/
+app/build/
+local.properties
+keystore.properties
+*.apk
+*.aab
+.idea/
+*.iml
+dist/

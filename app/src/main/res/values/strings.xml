@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Rotation Control</string>
+    <string name="accessibility_service_label">Rotation Control</string>
+    <string name="accessibility_service_description">Detects which app is open and applies your per-app orientation rules (portrait, landscape, auto, etc.). Does not read passwords or screen content beyond the app package name.</string>
+
+    <string name="setup_title">Finish setup</string>
+    <string name="setup_body">Accessibility is required. Modify system settings is recommended so Auto also flips the system auto-rotate switch. No root.</string>
+    <string name="status_accessibility_off">Accessibility: off — service cannot see the foreground app</string>
+    <string name="status_accessibility_on">Accessibility: on</string>
+    <string name="status_write_off">Modify system settings: off — cannot change rotation</string>
+    <string name="status_write_on">Modify system settings: on</string>
+    <string name="open_accessibility">Open Accessibility settings</string>
+    <string name="open_write_settings">Allow modify system settings</string>
+
+    <string name="master_label">Enforce rules</string>
+    <string name="master_on">enforcing</string>
+    <string name="master_off">paused</string>
+    <string name="master_off_toast">Rules paused; system rotation restored</string>
+    <string name="rule_summary_fmt">%1$d custom rule(s) · %2$s</string>
+
+    <string name="search_hint">Search apps</string>
+    <string name="rules_only">Show only apps with rules</string>
+    <string name="loading_apps">Loading installed apps…</string>
+    <string name="rule_none">Default</string>
+    <string name="rule_set_toast">%1$s → %2$s</string>
+
+    <string name="auto_lock_lock">Lock rotation</string>
+    <string name="auto_lock_unlock">Unlock rotation</string>
+    <string name="auto_locked_toast">Rotation locked</string>
+    <string name="auto_unlocked_toast">Auto rotation on</string>
+
+    <!-- Onboarding -->
+    <string name="onboard_continue">Continue</string>
+    <string name="onboard_back">Back</string>
+    <string name="onboard_skip">Skip</string>
+    <string name="onboard_later">I’ll do this later</string>
+    <string name="onboard_done">Get started</string>
+
+    <string name="onboard_1_title">Per-app screen orientation</string>
+    <string name="onboard_1_body">Force games to landscape, readers to portrait, or turn auto-rotate on for a single app. No root required.</string>
+
+    <string name="onboard_2_title">Enable permissions</string>
+    <string name="onboard_2_body">Grant these here. After each system screen, come back — status updates automatically. No root.</string>
+    <string name="onboard_2_a11y_title">Accessibility</string>
+    <string name="onboard_2_a11y_body">Sees only which app is in the foreground — not passwords or screen content. Find “Rotation Control” and turn it on.</string>
+    <string name="onboard_2_write_title">Modify system settings</string>
+    <string name="onboard_2_write_body">Lets the app lock orientation and apply Auto force-locks. Toggle allow for Rotation Control.</string>
+    <string name="onboard_2_hint">Accessibility is required. Modify system settings is strongly recommended for reliable locks.</string>
+    <string name="onboard_required">Required</string>
+    <string name="onboard_recommended">Recommended</string>
+    <string name="onboard_granted">Granted</string>
+    <string name="onboard_continue_setup">Continue setup</string>
+    <string name="onboard_all_set">All set — continue</string>
+    <string name="onboard_setup_summary_ok">Permissions look good. Enforce is ready — you can change it anytime on the main screen.</string>
+    <string name="onboard_setup_summary_missing">Still missing: %1$s. You can finish later from the setup card on the main screen.</string>
+
+    <string name="onboard_3_title">Tap an app → pick orientation</string>
+    <string name="onboard_3_body">Rules apply only while that app is open. Leaving restores your previous system rotation.</string>
+    <string name="onboard_3_tip">Tip: Auto follows the tablet tilt using the same force-lock as Landscape. For a fixed direction, pick Landscape or Portrait.</string>
+    <string name="onboard_demo_game">Game</string>
+    <string name="onboard_demo_game_sub">force sideways</string>
+    <string name="onboard_demo_video">Video app</string>
+    <string name="onboard_demo_video_sub">system auto-rotate on</string>
+    <string name="onboard_demo_reader">Reader</string>
+    <string name="onboard_demo_reader_sub">lock upright</string>
+    <string name="onboard_chip_landscape">Landscape</string>
+    <string name="onboard_chip_auto">Auto (sensor)</string>
+    <string name="onboard_chip_portrait">Portrait</string>
+
+    <string name="onboard_4_title">One master switch</string>
+    <string name="onboard_4_body">At the top of the main screen. Leave it on so rules apply while you use other apps.</string>
+    <string name="onboard_4_enforce_title">Enforce rules</string>
+    <string name="onboard_4_enforce_body">On = apply per-app rules. Off = pause and restore system rotation.</string>
+    <string name="onboard_4_modes_title">Modes at a glance</string>
+    <string name="onboard_4_modes_body">• Landscape / Portrait — lock a fixed orientation\n• Auto (sensor) — follow tilt (lock icon freezes angle)\n• System default — no override</string>
+</resources>

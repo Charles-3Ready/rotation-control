@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rotation Control — UI mockup</title>
+  <style>
+    :root {
+      --bg: #0F1115;
+      --surface: #1A1D24;
+      --text: #F2F4F8;
+      --muted: #9AA3B2;
+      --accent: #5B9DFF;
+      --ok: #3DDC84;
+      --warn: #FFB020;
+      --chip: #243044;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: #0a0b0e;
+      color: var(--text);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 24px 60px;
+    }
+    h1.page-title {
+      width: 100%;
+      text-align: center;
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+    .phone {
+      width: 360px;
+      height: 740px;
+      background: var(--bg);
+      border-radius: 36px;
+      border: 3px solid #2a2f3a;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.55), inset 0 0 0 1px #3a4150;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 22px;
+      background: #000;
+      border-radius: 12px;
+      z-index: 5;
+    }
+    .status-bar {
+      height: 36px;
+      padding: 14px 20px 0;
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+    .toolbar {
+      background: var(--surface);
+      padding: 14px 16px 16px;
+      font-size: 18px;
+      font-weight: 600;
+      border-bottom: 1px solid #252a34;
+      flex-shrink: 0;
+    }
+    .scroll {
+      flex: 1;
+      overflow: hidden;
+      padding: 12px 12px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .card {
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 14px;
+    }
+    .card.setup {
+      border: 1px solid var(--warn);
+    }
+    .card h2 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .card p, .status-line {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.4;
+    }
+    .status-line {
+      margin-top: 10px;
+    }
+    .status-line.warn { color: var(--warn); }
+    .status-line.ok { color: var(--ok); }
+    .btn {
+      display: block;
+      width: 100%;
+      margin-top: 6px;
+      padding: 10px 12px;
+      border: none;
+      border-radius: 20px;
+      background: #2a3548;
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: default;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .row .label { font-size: 15px; font-weight: 700; }
+    .row .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+    .switch {
+      width: 48px;
+      height: 28px;
+      border-radius: 14px;
+      background: var(--accent);
+      position: relative;
+      flex-shrink: 0;
+    }
+    .switch::after {
+      content: "";
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #fff;
+    }
+    .switch.off { background: #3a4150; }
+    .switch.off::after { right: auto; left: 3px; }
+    .search {
+      border: 1.5px solid #3a4558;
+      border-radius: 8px;
+      padding: 12px 14px;
+      color: var(--muted);
+      font-size: 14px;
+      background: transparent;
+    }
+    .filter-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .filter-row .switch {
+      width: 40px;
+      height: 24px;
+      background: #3a4150;
+    }
+    .filter-row .switch::after {
+      width: 18px;
+      height: 18px;
+      top: 3px;
+      left: 3px;
+      right: auto;
+    }
+    .app {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: var(--surface);
+      border-radius: 10px;
+      padding: 12px;
+    }
+    .icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      display: grid;
+      place-items: center;
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .app-meta { flex: 1; min-width: 0; }
+    .app-name {
+      font-size: 15px;
+      font-weight: 700;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .app-pkg {
+      font-size: 11px;
+      color: var(--muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .chip {
+      background: var(--chip);
+      color: var(--accent);
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .chip.dim { opacity: 0.55; }
+    .caption {
+      width: 360px;
+      margin-top: -24px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    .dialog-wrap {
+      position: relative;
+    }
+    .dialog-wrap .phone { filter: brightness(0.45); }
+    .dialog {
+      position: absolute;
+      left: 24px;
+      right: 24px;
+      top: 42%;
+      transform: translateY(-50%);
+      background: #232833;
+      border-radius: 16px;
+      padding: 18px 8px 8px;
+      box-shadow: 0 16px 48px rgba(0,0,0,0.5);
+      z-index: 10;
+    }
+    .dialog h3 {
+      font-size: 16px;
+      padding: 0 14px 12px;
+      border-bottom: 1px solid #333a48;
+    }
+    .option {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      font-size: 14px;
+    }
+    .option.selected { color: var(--accent); }
+    .radio {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--muted);
+      flex-shrink: 0;
+    }
+    .option.selected .radio {
+      border-color: var(--accent);
+      box-shadow: inset 0 0 0 4px var(--accent);
+      border-width: 2px;
+    }
+    .dialog-actions {
+      display: flex;
+      justify-content: flex-end;
+      padding: 8px 10px 6px;
+    }
+    .dialog-actions span {
+      color: var(--accent);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 10px 14px;
+    }
+    .palette {
+      width: 280px;
+      background: var(--surface);
+      border-radius: 16px;
+      padding: 20px;
+      align-self: center;
+    }
+    .palette h2 {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .swatch {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+      font-size: 13px;
+    }
+    .swatch i {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: block;
+      border: 1px solid #333;
+    }
+    .notes {
+      width: min(360px, 100%);
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.55;
+      align-self: center;
+    }
+    .notes strong { color: var(--text); }
+    .notes ul { margin: 8px 0 0 18px; }
+    .notes li { margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+  <h1 class="page-title">Rotation Control — UI design (matches shipped layouts)</h1>
+
+  <!-- Screen 1: first launch / setup -->
+  <div>
+    <div class="phone">
+      <div class="status-bar"><span>9:41</span><span>5G · 84%</span></div>
+      <div class="toolbar">Rotation Control</div>
+      <div class="scroll">
+        <div class="card setup">
+          <h2>Finish setup</h2>
+          <p>Two permissions are required so rules can apply while other apps are open.</p>
+          <div class="status-line warn">Accessibility: off — service cannot see the foreground app</div>
+          <button class="btn">Open Accessibility settings</button>
+          <div class="status-line warn">Modify system settings: off — cannot change rotation</div>
+          <button class="btn">Allow modify system settings</button>
+        </div>
+        <div class="card">
+          <div class="row">
+            <div>
+              <div class="label">Enforce rules</div>
+              <div class="sub">0 custom rule(s) · enforcing</div>
+            </div>
+            <div class="switch"></div>
+          </div>
+        </div>
+        <div class="search">Search apps</div>
+        <div class="filter-row">
+          <span>Show only apps with rules</span>
+          <div class="switch"></div>
+        </div>
+        <div class="app">
+          <div class="icon" style="background:#E53935">Y</div>
+          <div class="app-meta">
+            <div class="app-name">YouTube</div>
+            <div class="app-pkg">com.google.android.youtube</div>
+          </div>
+          <span class="chip dim">Default</span>
+        </div>
+        <div class="app">
+          <div class="icon" style="background:#1DB954">S</div>
+          <div class="app-meta">
+            <div class="app-name">Spotify</div>
+            <div class="app-pkg">com.spotify.music</div>
+          </div>
+          <span class="chip dim">Default</span>
+        </div>
+        <div class="app">
+          <div class="icon" style="background:#5865F2">D</div>
+          <div class="app-meta">
+            <div class="app-name">Discord</div>
+            <div class="app-pkg">com.discord</div>
+          </div>
+          <span class="chip dim">Default</span>
+        </div>
+      </div>
+    </div>
+    <p class="caption" style="margin-top:12px">1 · First launch (permissions needed)</p>
+  </div>
+
+  <!-- Screen 2: configured + rules -->
+  <div>
+    <div class="phone">
+      <div class="status-bar"><span>9:41</span><span>5G · 84%</span></div>
+      <div class="toolbar">Rotation Control</div>
+      <div class="scroll">
+        <!-- setup card hidden when both perms OK -->
+        <div class="card">
+          <div class="row">
+            <div>
+              <div class="label">Enforce rules</div>
+              <div class="sub">2 custom rule(s) · enforcing</div>
+            </div>
+            <div class="switch"></div>
+          </div>
+        </div>
+        <div class="search">Search apps</div>
+        <div class="filter-row">
+          <span>Show only apps with rules</span>
+          <div class="switch"></div>
+        </div>
+        <div class="app">
+          <div class="icon" style="background:#FF6D00">G</div>
+          <div class="app-meta">
+            <div class="app-name">Genshin Impact</div>
+            <div class="app-pkg">com.miHoYo.GenshinImpact</div>
+          </div>
+          <span class="chip">Landscape</span>
+        </div>
+        <div class="app">
+          <div class="icon" style="background:#00BCD4">M</div>
+          <div class="app-meta">
+            <div class="app-name">Maps</div>
+            <div class="app-pkg">com.google.android.apps.maps</div>
+          </div>
+          <span class="chip dim">Default</span>
+        </div>
+        <div class="app">
+          <div class="icon" style="background:#8E24AA">N</div>
+          <div class="app-meta">
+            <div class="app-name">Netflix</div>
+            <div class="app-pkg">com.netflix.mediaclient</div>
+          </div>
+          <span class="chip">Landscape</span>
+        </div>
+        <div class="app">
+          <div class="icon" style="background:#455A64">R</div>
+          <div class="app-meta">
+            <div class="app-name">Reader</div>
+            <div class="app-pkg">com.example.reader</div>
+          </div>
+          <span class="chip">Portrait</span>
+        </div>
+        <div class="app">
+          <div class="icon" style="background:#E53935">Y</div>
+          <div class="app-meta">
+            <div class="app-name">YouTube</div>
+            <div class="app-pkg">com.google.android.youtube</div>
+          </div>
+          <span class="chip dim">Default</span>
+        </div>
+      </div>
+    </div>
+    <p class="caption" style="margin-top:12px">2 · Ready (setup card gone; rules on chips)</p>
+  </div>
+
+  <!-- Screen 3: orientation picker dialog -->
+  <div class="dialog-wrap">
+    <div class="phone">
+      <div class="status-bar"><span>9:41</span><span>5G · 84%</span></div>
+      <div class="toolbar">Rotation Control</div>
+      <div class="scroll">
+        <div class="card">
+          <div class="row">
+            <div>
+              <div class="label">Enforce rules</div>
+              <div class="sub">1 custom rule(s) · enforcing</div>
+            </div>
+            <div class="switch"></div>
+          </div>
+        </div>
+        <div class="search">game</div>
+        <div class="app">
+          <div class="icon" style="background:#FF6D00">G</div>
+          <div class="app-meta">
+            <div class="app-name">Genshin Impact</div>
+            <div class="app-pkg">com.miHoYo.GenshinImpact</div>
+          </div>
+          <span class="chip">Landscape</span>
+        </div>
+      </div>
+    </div>
+    <div class="dialog">
+      <h3>Genshin Impact</h3>
+      <div class="option"><span class="radio"></span> System default</div>
+      <div class="option"><span class="radio"></span> Portrait</div>
+      <div class="option selected"><span class="radio"></span> Landscape</div>
+      <div class="option"><span class="radio"></span> Reverse portrait</div>
+      <div class="option"><span class="radio"></span> Reverse landscape</div>
+      <div class="option"><span class="radio"></span> Auto (sensor)</div>
+      <div class="dialog-actions"><span>CANCEL</span></div>
+    </div>
+    <p class="caption" style="margin-top:12px; width:360px">3 · Tap an app → orientation picker</p>
+  </div>
+
+  <div class="palette">
+    <h2>Color tokens</h2>
+    <div class="swatch"><i style="background:#0F1115"></i> bg #0F1115</div>
+    <div class="swatch"><i style="background:#1A1D24"></i> surface #1A1D24</div>
+    <div class="swatch"><i style="background:#F2F4F8"></i> text #F2F4F8</div>
+    <div class="swatch"><i style="background:#9AA3B2"></i> muted #9AA3B2</div>
+    <div class="swatch"><i style="background:#5B9DFF"></i> accent #5B9DFF</div>
+    <div class="swatch"><i style="background:#3DDC84"></i> ok #3DDC84</div>
+    <div class="swatch"><i style="background:#FFB020"></i> warn #FFB020</div>
+    <div class="swatch"><i style="background:#243044"></i> chip #243044</div>
+  </div>
+
+  <div class="notes">
+    <strong>Layout structure (real XML)</strong>
+    <ul>
+      <li><strong>Toolbar</strong> — “Rotation Control”</li>
+      <li><strong>Setup card</strong> — amber border; hides when Accessibility + Write Settings are both on</li>
+      <li><strong>Enforce rules</strong> — master switch + rule count</li>
+      <li><strong>Search</strong> + “rules only” filter</li>
+      <li><strong>App rows</strong> — icon · name · package · rule chip</li>
+      <li><strong>Dialog</strong> — single-choice orientation modes</li>
+    </ul>
+    <p style="margin-top:14px">Source: <code>activity_main.xml</code>, <code>item_app.xml</code>, Material 3 dark theme.</p>
+  </div>
+</body>
+</html>
