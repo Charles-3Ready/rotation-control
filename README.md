@@ -77,9 +77,9 @@ Requires JDK 17 and Android SDK 35.
 
 Rotation Control is free and has no ads. If it helps and you want to tip:
 
-[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/luminarystudios)
+[![Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/3readyproto)
 
-Or open [ko-fi.com/luminarystudios](https://ko-fi.com/luminarystudios). Totally optional.
+Or open [ko-fi.com/3readyproto](https://ko-fi.com/3readyproto). Totally optional.
 
 ## License
 
@@ -87,4 +87,4 @@ Free for personal use. Do not resell as a closed product under another name.
 
 ---
 
-**Charles-3Ready** · [Releases](https://github.com/Charles-3Ready/rotation-control/releases) · [Ko-fi](https://ko-fi.com/luminarystudios)
+**Charles-3Ready** · [Releases](https://github.com/Charles-3Ready/rotation-control/releases) · [Ko-fi](https://ko-fi.com/3readyproto)
