@@ -83,7 +83,12 @@ Or open [ko-fi.com/3readyproto](https://ko-fi.com/3readyproto). Totally optional
 
 ## License
 
-Free for personal use. Do not resell as a closed product under another name.
+Licensed under either of:
+
+- [Apache License, Version 2.0](LICENSE-APACHE)
+- [MIT license](LICENSE-MIT)
+
+at your option.
 
 ---
 
