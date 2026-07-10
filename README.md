@@ -83,12 +83,14 @@ Or open [ko-fi.com/3readyproto](https://ko-fi.com/3readyproto). Totally optional
 
 ## License
 
-Licensed under either of:
+This project is dual-licensed under **MIT** or **Apache-2.0**, at your option:
 
-- [Apache License, Version 2.0](LICENSE-APACHE)
-- [MIT license](LICENSE-MIT)
+- [MIT](LICENSE-MIT)
+- [Apache License 2.0](LICENSE-APACHE)
 
-at your option.
+Unless you explicitly state otherwise, any contribution intentionally submitted
+for inclusion in this project shall be dual-licensed as above, without additional
+terms or conditions.
 
 ---
 
